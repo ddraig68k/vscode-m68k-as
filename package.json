@@ -1,0 +1,31 @@
+{
+  "name": "m68k-assembly-as",
+  "displayName": "Motorola (AS) 68k Assembly",
+  "description": "Syntax highlighting for Motorola 68000 GNU-as assembly language",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.105.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "m68k-as",
+      "aliases": ["Motorola (AS) 68k Assembly", "m68k-as"],
+      "extensions": [".s",".s",".asm",".68k"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "m68k-as",
+      "scopeName": "source.m68k-as",
+      "path": "./syntaxes/m68k-as.tmLanguage.json"
+    }]
+  },
+  "icon": "./images/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ddraig68k/vscode-m68k-as"
+  }
+
+}

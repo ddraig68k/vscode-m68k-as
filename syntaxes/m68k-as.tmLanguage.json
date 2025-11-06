@@ -1,0 +1,160 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "Motorola (AS) 68k Assembly",
+	"patterns": [
+		{"include": "#preprocessor"},
+		{"include": "#comment"},
+		{"include": "#register"},
+		{"include": "#value"},
+		{"include": "#directive"},
+		{"include": "#instruction"},
+		{"include": "#label"},
+		{"include": "#other"}
+	],
+
+	"repository": {
+		"preprocessor": {
+			"patterns": [
+				{
+					"name": "meta.preprocessor.m68k-as",
+					"match": "(?<=^|\\s)#\\s*(?i:(define|undef|ifdef|ifndef|if|else|elif|endif|include))\\b.*"
+				}
+			]
+		},
+		"comment": {
+			"patterns": [
+				{
+				  "name": "comment.line.pipe.m68k-as",
+				  "match": "(?<![\\w.])\\|.*"
+				},
+				{
+				  "name": "comment.line.number-sign.m68k-as",
+				  "match": "(?<![\\w ])#.*"
+				},
+				{
+					"name": "comment.line.double-slash.m68k-as",
+					"match": "//.*"
+				},
+				{
+					"name": "comment.block.m68k-as",
+					"begin": "/\\*",
+					"end": "\\*/"
+				}
+			]
+		},
+
+		"register": {
+			"patterns" : [
+				{
+					"name": "variable.other.constant.register.m68k-as",
+					"match": "(?<!\\w)(?:%?)(?i:d[0-7]|a[0-7]|sr|sp|ssp|usp|vbr)(?!\\w)"
+				}
+			]
+		},
+
+		"value": {
+			"patterns": [
+				{
+				  "name": "constant.numeric.hex.m68k-as",
+				  "match": "(?i)(?<!\\w)(#?\\$[0-9a-f]+|#?0x[0-9a-f]+|#?[0-9a-f]+h)(?!\\w)"
+				},
+				{
+				  "name": "constant.numeric.binary.m68k-as",
+				  "match": "(?i)(?<!\\w)(#?%[01]+)(?!\\w)"
+				},
+				{
+				  "name": "constant.numeric.decimal.m68k-as",
+				  "match": "(?<!\\w)(#?[0-9]+)(?!\\w)"
+				},
+				{
+					"name": "string.quoted.single.m68k-as",
+					"match": "'.*'"
+				},
+				{
+					"name": "string.quoted.double.m68k-as",
+					"match": "\\\".*\\\""
+				}
+			]
+		},
+
+		"directive": {
+			"patterns": [
+				{
+					"match": "((\\.section|\\.global|\\.globl|\\.extern)\\s+.(data|text|bss|\\w+))|\\.lcomm",
+					"name": "storage.type.asmdirectives.m68k-as"
+				},
+				{
+					"match": "(\\.quad|\\.ascii|\\.asciz|\\.long|\\.short|\\.int|\\.byte)",
+					"name": "storage.type.asmdirectives.m68k-as"
+				},
+				{
+					"match":"(?i)\\b(dc|dcb|ds|endc|endm|textequ|equ|else|elseif|fail|global|ifeq|ifne|include|incbin|list|nolist|macro|memory|mexit|offset|opt|org|page|reg|section|set|simhalt|text)(\\.[lLbBwW])?\\b",
+            		"name": "storage.type.asmdirectives.m68k-as"
+				}
+			]
+		},
+
+		"instruction": {
+			"patterns": [
+        {
+            "match": "(?i)\\b(exg|lea|link|move[ampq]?|pea|swap|unlk)(\\.[lLbBwW])?\\b",
+            "name": "keyword.control.datamovement.m68k-as",
+            "comment": "Instruction Summary: Data Movement"
+        },
+        {
+            "match":
+                "(?i)\\b(add[aiqx]?|clr|cmp[aim]?|div[su]?|ext|mul[su]?|neg[x]?|sub[aiqx]?|tas|tst)(\\.[lLbBwW])?\\b",
+            "name": "keyword.control.integerarithmetic.m68k-as",
+            "comment": "Instruction Summary: Integer Arithmetics"
+        },
+        {
+            "match": "(?i)\\b(and[i]?|or[i]?|eor[i]?|not)(\\.[lLbBwW])?\\b",
+            "name": "keyword.control.logicaloperators.m68k-as",
+            "comment": "Instruction Summary: Logical Operators"
+        },
+        {
+            "match": "(?i)\\b(as[lr]|ls[lr]|ro[lr]|rox[lr])(\\.[lLbBwW])?\\b",
+            "name": "keyword.control.shiftrotation.m68k-as",
+            "comment": "Instruction Summary: Shift and Rotation"
+        },
+        {
+            "match": "(?i)\\b(btst|bset|bclr|bchg)(\\.[lLbBwW])?\\b",
+            "name": "keyword.control.bitmanipulation.m68k-as",
+            "comment": "Instruction Summary: Bit Manipulation"
+        },
+        {
+            "match":
+                "(?i)\\b(bcc|bcs|beq|bne|bge|bgt|bhi|ble|bls|blt|bmi|bpl|bvc|bvs|bra|bsr|dbra|jsr|rts|jmp|rtr)(\\.[lLbBwWsS])?\\b",
+            "name": "keyword.control.programcontrol.m68k-as",
+            "comment": "Instruction Summary: Program Control"
+        },
+        {
+            "match": "(?i)\\b(reset|rte|stop|chk|trapv|trap|illegal|nop)\\b",
+            "name": "keyword.control.shiftrotation.m68k-as",
+            "comment": "Instruction Summary: System Control and Other"
+        }
+			]
+		},
+
+		"label": {
+			"patterns": [
+				{
+					"name": "entity.name.function.label.m68k-as",
+					"match": "^\\@?[A-Za-z\\._][A-Za-z0-9\\._]*(?=(\\$|\\:{0,2}))"
+				}
+			]
+		},
+
+		"other": {
+			"patterns": [
+				{
+					"name": "keyword.operator.m68k-as",
+					"match": "(?i:\\.[bwls]|[+\\-*&|:.,()!<>/\\\\])"
+				}
+			]
+		}
+
+	},
+
+	"scopeName": "source.m68k-as"
+}
