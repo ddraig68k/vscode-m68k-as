@@ -2,7 +2,7 @@
   "name": "m68k-assembly-as",
   "displayName": "Motorola (AS) 68k Assembly",
   "description": "Syntax highlighting for Motorola 68000 GNU-as assembly language",
-  "version": "1.0.1",
+  "version": "1.1.1",
   "publisher": "ddraig68k",
   "engines": {
     "vscode": "^1.105.0"
