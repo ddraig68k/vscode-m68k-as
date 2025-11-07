@@ -14,7 +14,7 @@
     "languages": [{
       "id": "m68k-as",
       "aliases": ["Motorola (AS) 68k Assembly", "m68k-as"],
-      "extensions": [".s",".s",".asm",".68k"],
+      "extensions": [".s",".s",".asm",".inc", ".i"],
       "configuration": "./language-configuration.json"
     }],
     "grammars": [{
