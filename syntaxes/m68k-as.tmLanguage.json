@@ -97,7 +97,7 @@
 		"instruction": {
 			"patterns": [
         {
-            "match": "(?i)\\b(exg|lea|link|move[ampq]?|pea|swap|unlk)(\\.[lLbBwW])?\\b",
+			"match": "(?i)\\b(exg|lea|link|move[ampqcs]?|move16|pea|swap|unlk)(\\.[lLbBwW])?\\b",
             "name": "keyword.control.datamovement.m68k-as",
             "comment": "Instruction Summary: Data Movement"
         },

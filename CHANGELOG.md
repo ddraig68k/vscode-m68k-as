@@ -14,3 +14,7 @@ All notable changes to the "m68k-assembly-as" extension will be documented in th
 ## [Version 1.1.1]
 
 - Add .inc and .i to supported file list
+
+## [Version 1.1.2]
+
+- Added missing movec highlighting
