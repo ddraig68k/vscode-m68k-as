@@ -18,3 +18,7 @@ All notable changes to the "m68k-assembly-as" extension will be documented in th
 ## [Version 1.1.2]
 
 - Added missing movec highlighting
+
+## [Version 1.2.0]
+
+- Added 68020+ instruction codes

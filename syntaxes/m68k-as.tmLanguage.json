@@ -24,12 +24,12 @@
 		"comment": {
 			"patterns": [
 				{
-				  "name": "comment.line.pipe.m68k-as",
-				  "match": "(?<![\\w.])\\|.*"
+				  	"name": "comment.line.pipe.m68k-as",
+				  	"match": "(?<![\\w.])\\|.*"
 				},
 				{
-				  "name": "comment.line.number-sign.m68k-as",
-				  "match": "(?<![\\w ])#.*"
+				  	"name": "comment.line.number-sign.m68k-as",
+				  	"match": "^[^\\S\\n]*#.*$"
 				},
 				{
 					"name": "comment.line.double-slash.m68k-as",
@@ -47,7 +47,7 @@
 			"patterns" : [
 				{
 					"name": "variable.other.constant.register.m68k-as",
-					"match": "(?<!\\w)(?:%?)(?i:d[0-7]|a[0-7]|sr|sp|ssp|usp|vbr)(?!\\w)"
+					"match": "(?<!\\w)(?:%?(?i:(?:d|a)[0-7]|fp[0-7]|sp|pc|sr|ssp|usp|vbr|cacr|caar|tc|itt[0-1]|dtt[0-1]))(?!\\w)"
 				}
 			]
 		},
@@ -55,24 +55,24 @@
 		"value": {
 			"patterns": [
 				{
-				  "name": "constant.numeric.hex.m68k-as",
-				  "match": "(?i)(?<!\\w)(#?\\$[0-9a-f]+|#?0x[0-9a-f]+|#?[0-9a-f]+h)(?!\\w)"
+					"name": "constant.numeric.hex.m68k-as",
+					"match": "(?i)(?<!^)#(?:\\$[0-9a-f]+|0x[0-9a-f]+|[0-9a-f]+h)"
 				},
 				{
-				  "name": "constant.numeric.binary.m68k-as",
-				  "match": "(?i)(?<!\\w)(#?%[01]+)(?!\\w)"
+					"name": "constant.numeric.binary.m68k-as",
+					"match": "(?i)(?<!^)#%[01]+"
 				},
 				{
-				  "name": "constant.numeric.decimal.m68k-as",
-				  "match": "(?<!\\w)(#?[0-9]+)(?!\\w)"
+					"name": "constant.numeric.decimal.m68k-as",
+					"match": "(?<!^)#[0-9]+"
 				},
 				{
 					"name": "string.quoted.single.m68k-as",
-					"match": "'.*'"
+					"match": "'.*?'"
 				},
 				{
 					"name": "string.quoted.double.m68k-as",
-					"match": "\\\".*\\\""
+					"match": "\".*?\""
 				}
 			]
 		},
@@ -96,43 +96,56 @@
 
 		"instruction": {
 			"patterns": [
-        {
-			"match": "(?i)\\b(exg|lea|link|move[ampqcs]?|move16|pea|swap|unlk)(\\.[lLbBwW])?\\b",
-            "name": "keyword.control.datamovement.m68k-as",
-            "comment": "Instruction Summary: Data Movement"
-        },
-        {
-            "match":
-                "(?i)\\b(add[aiqx]?|clr|cmp[aim]?|div[su]?|ext|mul[su]?|neg[x]?|sub[aiqx]?|tas|tst)(\\.[lLbBwW])?\\b",
-            "name": "keyword.control.integerarithmetic.m68k-as",
-            "comment": "Instruction Summary: Integer Arithmetics"
-        },
-        {
-            "match": "(?i)\\b(and[i]?|or[i]?|eor[i]?|not)(\\.[lLbBwW])?\\b",
-            "name": "keyword.control.logicaloperators.m68k-as",
-            "comment": "Instruction Summary: Logical Operators"
-        },
-        {
-            "match": "(?i)\\b(as[lr]|ls[lr]|ro[lr]|rox[lr])(\\.[lLbBwW])?\\b",
-            "name": "keyword.control.shiftrotation.m68k-as",
-            "comment": "Instruction Summary: Shift and Rotation"
-        },
-        {
-            "match": "(?i)\\b(btst|bset|bclr|bchg)(\\.[lLbBwW])?\\b",
-            "name": "keyword.control.bitmanipulation.m68k-as",
-            "comment": "Instruction Summary: Bit Manipulation"
-        },
-        {
-            "match":
-                "(?i)\\b(bcc|bcs|beq|bne|bge|bgt|bhi|ble|bls|blt|bmi|bpl|bvc|bvs|bra|bsr|dbra|jsr|rts|jmp|rtr)(\\.[lLbBwWsS])?\\b",
-            "name": "keyword.control.programcontrol.m68k-as",
-            "comment": "Instruction Summary: Program Control"
-        },
-        {
-            "match": "(?i)\\b(reset|rte|stop|chk|trapv|trap|illegal|nop)\\b",
-            "name": "keyword.control.shiftrotation.m68k-as",
-            "comment": "Instruction Summary: System Control and Other"
-        }
+				{
+					"match": "(?i)\\b(exg|lea|link|move[ampqcs]?|move16|pea|swap|unlk)(\\.[lLbBwW])?\\b",
+					"name": "keyword.control.datamovement.m68k-as",
+					"comment": "Instruction Summary: Data Movement"
+				},
+				{
+					"match": "(?i)\\b(add[aiqx]?|clr|cmp[aim2]?|div[su]?|ext[b]|mul[su]?|neg[x]?|sub[aiqx]?|tas|tst)(\\.[lLbBwW])?\\b",
+					"name": "keyword.control.integerarithmetic.m68k-as",
+					"comment": "Instruction Summary: Integer Arithmetics"
+				},
+				{
+					"match": "(?i)\\b(and[i]?|or[i]?|eor[i]?|not)(\\.[lLbBwW])?\\b",
+					"name": "keyword.control.logicaloperators.m68k-as",
+					"comment": "Instruction Summary: Logical Operators"
+				},
+				{
+					"match": "(?i)\\b(as[lr]|ls[lr]|ro[lr]|rox[lr])(\\.[lLbBwW])?\\b",
+					"name": "keyword.control.shiftrotation.m68k-as",
+					"comment": "Instruction Summary: Shift and Rotation"
+				},
+				{
+					"match": "(?i)\\b(btst|bset|bclr|bchg|bfchg|bfclr|bfext[su]|bfffo|bfins|bfset|bftst)(\\.[lLbBwW])?\\b",
+					"name": "keyword.control.bitmanipulation.m68k-as",
+					"comment": "Instruction Summary: Bit Manipulation"
+				},
+				{
+					"match": "(?i)\\b(?:(?:b|db|s|trap|pb|pdb|ps|ptrap|ftrap|j)(?:cc|cs|eq|ne|ge|gt|hi|le|lo|ls|lt|mi|pl|vc|vs|ra|sr)|jsr|jmp|rts|rtr|dbf)(?:\\.[lLbBwW])?\\b",
+					"name": "keyword.control.programcontrol.m68k-as",
+					"comment": "Instruction Summary: Program Control"
+				},
+				{
+					"match": "(?i)\\b(reset|rte|stop|bkpt|chk[2]|trap|trapv|illegal|nop|abcd|nbcd|pack|sbcd|unpk|cinv[lpa]|cpush[lpa])\\b",
+					"name": "keyword.control.shiftrotation.m68k-as",
+					"comment": "Instruction Summary: System Control and Other"
+				},
+				{
+					"match": "(?i)\\b(fabs|facos|fadd|fasin|fatanh|fatan|fcmp|fcosh|fcos|fdabs|fdadd|fddiv|fdiv|fdmove|fdmul|fdneg|fdsqrt|fdsub|fetox|fetoxm1|fgetexp|fgetman|fint|fintrz|flog10|flog2|flogn|flognp1|fmod|fmovecr|fmove|fmovem|fmul|fneg|fnop|frem|frestore|fsabs|fsadd|fsave|fscale|fsdiv|fsglmul|fsincos|fsinh|fsin|fsmove|fsmul|fsneg|fsqrt|fssqrt|fssub|fsub|ftanh|ftan|ftentox|ftst|ftwotox)(\\.[lLbBwWxXdDsSpP])?\\b",
+					"name": "keyword.control.floatingpoint.m68k-as",
+					"comment": "Instruction Summary: Floating Point"
+				},
+				{
+					"match": "(?i)\\b(pflushan|pflush[ansr]|pload|pmove|prestore|psave|ptest)(\\.[lLbBwW])?\\b",
+					"name": "keyword.control.mmu.m68k-as",
+					"comment": "Instruction Summary: Memory Management"
+				},
+				{
+					"match": "(?i)\\b(?:fb|fbd|fs)(?:eq|ne|gt|ngt|ge|nge|lt|nlt|le|nle|gl|ngl|gle|ngle|eq|ne|ogt|ule|oge|ult|olt|uge|ole|ugt|ogl|ueq|or|un|f|t|sg|st|neq|sne)?\\b",
+					"name": "keyword.control.floatconditional.m68k-as",
+					"comment": "Instruction Summary: Floating point Conditional Tests"
+				}
 			]
 		},
 
