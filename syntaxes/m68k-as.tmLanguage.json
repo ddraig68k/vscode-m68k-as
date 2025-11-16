@@ -84,11 +84,11 @@
 					"name": "storage.type.asmdirectives.m68k-as"
 				},
 				{
-					"match": "(\\.quad|\\.ascii|\\.asciz|\\.long|\\.short|\\.int|\\.byte)",
+					"match": "(\\.quad|\\.ascii|\\.asciz|\\.string|\\.long|\\.short|\\.int|\\.byte)",
 					"name": "storage.type.asmdirectives.m68k-as"
 				},
 				{
-					"match":"(?i)\\b(dc|dcb|ds|endc|endm|textequ|equ|else|elseif|fail|global|ifeq|ifne|include|incbin|list|nolist|macro|memory|mexit|offset|opt|org|page|reg|section|set|simhalt|text)(\\.[lLbBwW])?\\b",
+					"match":"(?i)\\b(.align|dc|dcb|ds|endc|endm|textequ|equ|else|elseif|fail|global|ifeq|ifne|include|.include|incbin|list|nolist|macro|memory|mexit|offset|opt|org|page|reg|section|set|simhalt|text)(\\.[lLbBwW])?\\b",
             		"name": "storage.type.asmdirectives.m68k-as"
 				}
 			]
@@ -122,7 +122,7 @@
 					"comment": "Instruction Summary: Bit Manipulation"
 				},
 				{
-					"match": "(?i)\\b(?:(?:b|db|s|trap|pb|pdb|ps|ptrap|ftrap|j)(?:cc|cs|eq|ne|ge|gt|hi|le|lo|ls|lt|mi|pl|vc|vs|ra|sr)|jsr|jmp|rts|rtr|dbf)(?:\\.[lLbBwW])?\\b",
+					"match": "(?i)\\b(?:(?:b|db|s|trap|pb|pdb|ps|ptrap|ftrap|j)(?:cc|cs|eq|ne|ge|gt|hi|le|lo|ls|lt|mi|pl|vc|vs|ra|sr)|jsr|jmp|rts|rtr|dbf)(?:\\.[sSlLbBwW])?\\b",
 					"name": "keyword.control.programcontrol.m68k-as",
 					"comment": "Instruction Summary: Program Control"
 				},

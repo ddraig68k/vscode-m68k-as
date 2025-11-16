@@ -22,3 +22,7 @@ All notable changes to the "m68k-assembly-as" extension will be documented in th
 ## [Version 1.2.0]
 
 - Added 68020+ instruction codes
+
+## [Version 1.2.1]
+
+- Fix for branch bxx.s highlighting
